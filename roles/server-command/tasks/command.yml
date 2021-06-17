@@ -1,0 +1,6 @@
+---
+- name: execute command 
+  args:  
+   chdir: cd /var/www/shipwire.www/frontend/tools/rates
+  shell: php ./clearCustomersCarriersRatesCache.php -q
+
