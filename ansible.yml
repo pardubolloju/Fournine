@@ -1,0 +1,5 @@
+---
+- hosts: shipwire
+  become: true
+  roles:
+  - ansible.yml
