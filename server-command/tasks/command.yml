@@ -1,3 +1,0 @@
----
-- name: execute command 
-  shell: cd /var/www/shipwire.www/frontend/tools/rates; php ./clearCustomersCarr         iersRatesCache.php -q

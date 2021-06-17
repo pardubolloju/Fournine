@@ -1,3 +1,0 @@
----
-# tasks file for server-command
-- include_tasks: command.yml
