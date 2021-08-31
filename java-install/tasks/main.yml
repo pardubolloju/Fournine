@@ -1,0 +1,14 @@
+---
+- hosts: all
+  become: true
+  gather_facts: yes
+
+  tasks:
+
+   - name: Download Java JDK
+     get_url: 
+       url: https://download.oracle.com/otn-pub/java/jdk/16.0.2%2B7/d4a915d82b4c4fbb9bde534da945d746/jdk-16.0.2_linux-x64_bin.rpm
+     dest: /opt/jdk-16.0.2_linux-x64_bin.rpm
+
+   - name: Install jdk rpm 
+     yum: name=/opt/jdk-16.0.2_linux-x64_bin.rpm state=present
