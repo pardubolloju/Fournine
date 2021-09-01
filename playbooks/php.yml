@@ -1,0 +1,27 @@
+---
+- hosts: all
+  become: true
+  gather_facts: yes
+
+  tasks:
+    - name: Install php 7
+      yum: name=php7 state=present
+
+    - name: Install lamp stack
+      yum:
+        pkg:
+          - php7.4-mysql
+          - php7.4-curl
+          - php7.4-json
+          - php7.4-cgi
+          - php7.4-xsl
+          - php7.4-cgi
+          - php7.4-gd
+          - php7.4-mbstring
+          - php7.4-zip
+          - php7.4-xmlrpc
+          - php7.4-soap
+          - php7.4-intl
+          - libapache2-mod-php
+        state: present
+   

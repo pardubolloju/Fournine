@@ -1,0 +1,25 @@
+---
+- hosts: all
+  gather_facts: true
+  tasks:
+     - name: backup  DB
+       mysql_db:
+        name: db
+        state: dump
+        target: /opt/backup.sql
+        login_host: 192.168.10.22
+        login_user: root
+        login_password: 'password'
+     
+     - name: Remove existing files
+       shell: rm -rf < existing file name >
+     
+     - name: start the importing
+       mysql_db:
+         name: restoredb
+         state: import
+         target: /opt/backup.sql"
+         login_host: 192.168.10.2
+         login_user: root
+         login_password: 'Password' 
+         
