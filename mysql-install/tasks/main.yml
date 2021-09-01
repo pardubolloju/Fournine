@@ -1,0 +1,23 @@
+---
+- hosts: database
+  become: true
+  gather_facts: yes
+
+  tasks:
+   - name: Download sources
+     get_url:
+        url:  https://dev.mysql.com/get/mysql80-community-release-el7-1.noarch.rpm
+        dest: /root
+
+   - name: Install package
+     yum:
+       name: /root/mysql80-community-release-el7-1.noarch.rpm
+       state: present
+
+
+   - name: Install MySQL
+     yum: name=mysql-server state=installed
+
+   - name: Start & Enable Mysql service
+     service: name: mysqld state: started is-enabled: yes
+  
