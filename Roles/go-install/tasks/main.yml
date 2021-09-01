@@ -1,0 +1,18 @@
+---
+- hosts: all
+  become: true
+  gather_facts: yes
+
+  tasks:
+   - name: Download Golang file
+     get_url: 
+       url: https://golang.org/dl/go1.17.linux-amd64.tar.gz
+       dest: /usr/local/bin
+
+   - name: Extract zip file
+     shell: tar -xvf go1.17.linux-amd64.tar.gz
+     args:
+       chdir: /usr/local/bin
+
+
+
