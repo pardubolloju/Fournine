@@ -1,0 +1,14 @@
+---
+- hosts: all
+  become: true
+  gather_facts: yes
+
+  tasks: 
+   - name: Install Redis Package
+     yum: name=redis state=latest
+
+   - name: Start & Enable redis service
+     service: name=redis state=started
+     service: name=redis state=enabled
+
+     
