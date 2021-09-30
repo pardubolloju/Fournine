@@ -1,0 +1,26 @@
+--- 
+- hosts: all
+  become: true
+  gather_facts: yes
+
+  tasks:
+   - name: check webhook exists 
+     stat: 
+       path: /home/deploy/go/bin
+     register: /home/deploy/go/bin  
+   
+   - block:
+      - name: Install rtt 
+        get_url:
+           url:  '{{ artifactory.rootUrl }}/shipwire-exe/webhook'
+           headers:
+              Authorization: 'Bearer {{ artifactory.accessToken }}'
+           dest: /home/deploy/go/bin/webhook
+           force: yes
+           owner: deploy 
+           group: deploy 
+           mode: 0755
+         notify:
+        - 'Restart service'
+  when: targetDir.stat.isdir is defined and targetDir.stat.isdir
+   
