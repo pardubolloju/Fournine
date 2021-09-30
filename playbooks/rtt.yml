@@ -1,0 +1,17 @@
+---
+- hosts: all
+  become: true
+  gather_facts: yes
+
+  tasks:
+   - name: Install rtt 
+     get_url:
+      url: '{{ artifactory.rootUrl }}/shipwire-exe/rtt_linux_amd64'
+      dest: /usr/local/bin/rtt
+
+   - name: Permission for file
+     file:
+      path: /usr/local/bin/rtt
+      owner: deploy 
+      group: root
+      mode: 755

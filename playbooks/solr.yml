@@ -1,0 +1,13 @@
+---
+- hosts: localhost
+  become: true
+  gather_facts: yes
+
+  tasks:
+   - name: Install solr
+     get_url:
+       url: http://archive.apache.org/dist/lucene/solr/6.4.1/
+       dest: /opt 
+      
+   - name: Start solr 
+     shell: solr-6.4.1/bin/solr start
