@@ -1,0 +1,26 @@
+--- 
+- hosts: all
+  become: true
+  gather_facts: yes
+
+  tasks:
+   - name: check ratingextension exists 
+     stat: 
+       path: /usr/lib64/php/modules
+     register: /usr/lib64/php/modules
+   
+   - block:
+      - name: Install ratingextension
+        get_url:
+           url:   '{{ artifactory.rootUrl }}/shipwire-so/RatingExt-PHP71.so'
+           headers:
+              Authorization: 'Bearer {{ artifactory.accessToken }}'
+           dest: /usr/lib64/php/modules
+           force: yes
+           owner: root
+           group: root 
+           mode: 0755
+         notify:
+        - 'Restart service'
+  when: targetDir.stat.isdir is defined and targetDir.stat.isdir
+   

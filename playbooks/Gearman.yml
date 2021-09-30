@@ -1,0 +1,16 @@
+---
+- hosts: all
+  become: true
+  gather_facts: yes
+
+  tasks:
+   - name: Install Gearman devel package & Gearman Deamon
+     yum:
+      - name=libgearman state=present
+      - name=libgearman-devel statte=present
+      - name=gearmand state=present
+
+   - name: Start & Enable the gearman service
+     service: name=gearmand state=started 
+     service: name=gearmand state=enabled
+    
